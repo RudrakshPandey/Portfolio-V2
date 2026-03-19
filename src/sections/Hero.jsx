@@ -89,7 +89,6 @@ function FloatingIllustration() {
 const socialLinks = [
   { label: 'GitHub',   icon: 'GH', href: personal.social.github  },
   { label: 'LinkedIn', icon: 'in', href: personal.social.linkedin },
-  { label: 'Twitter',  icon: '𝕏',  href: personal.social.twitter  },
 ];
 
 export default function Hero() {
@@ -271,7 +270,6 @@ function HeroContent() {
         {[
           { label: 'GitHub', icon: 'GH', href: personal.social.github },
           { label: 'LinkedIn', icon: 'in', href: personal.social.linkedin },
-          { label: 'Twitter', icon: '𝕏', href: personal.social.twitter },
         ].map(s => (
           <motion.a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
             whileHover={{ scale: 1.12, y: -3 }} whileTap={{ scale: 0.95 }}

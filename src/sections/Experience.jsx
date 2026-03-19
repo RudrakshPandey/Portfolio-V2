@@ -106,7 +106,7 @@ function RecruiterCard() {
       </p>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
         <motion.a
-          href="https://www.linkedin.com/in/rudrakshpandey/?openDM=true"
+          href="www.linkedin.com/in/rudraksh-pandey-b21000135/?openDM=true"
           target="_blank" rel="noopener noreferrer"
           whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}
           style={{ padding: '8px 18px', background: 'var(--black)', color: 'var(--white)', borderRadius: 8, fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 7, textDecoration: 'none' }}

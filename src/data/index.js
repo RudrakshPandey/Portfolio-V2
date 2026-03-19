@@ -14,9 +14,8 @@ export const personal = {
   phone: "+91-9340845161",
   social: {
     github:   "https://github.com/RudrakshPandey",
-    linkedin: "https://linkedin.com/in/rudrakshpandey",
-    twitter:  "https://twitter.com",
-    portfolio:"https://portfolio",
+    linkedin: "www.linkedin.com/in/rudraksh-pandey-b21000135",
+    portfolio:"https://rudrakshpandey.github.io/Portfolio-V2/",
   },
 };
 
