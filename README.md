@@ -1,47 +1,57 @@
-# Portfolio — Evren Shah
+# Rudraksh Pandey — Portfolio v7
 
-A modern, animated personal portfolio built with **React** + **Framer Motion**, following the Sora design system.
+A fast, animated, fully responsive personal portfolio built with React and Vite. Features a custom cursor, scroll-reveal animations, a floating bottom nav for mobile/tablet, and a PDF resume modal — all with zero UI libraries.
 
----
-
-## ✨ Features
-
-- **Smooth page loader** with animated progress bar
-- **Custom cursor** with spring-physics lag and hover states
-- **Typewriter hero** with cycling role titles
-- **Scroll-triggered reveals** on every section (fade up, slide left/right, scale in)
-- **Stagger animations** on skill cards and project grids
-- **Interactive experience timeline** with animated expand/collapse
-- **Animated contact form** with validation and success state
-- **Sticky navbar** that blurs on scroll
-- **Floating SVG illustration** in hero
-- Fully **responsive** — mobile-first breakpoints
-- **Reduced motion** support (`prefers-reduced-motion`)
+![landing page](image.png)
 
 ---
 
-## 🎨 Design System
+## Tech Stack
 
-| Token | Value |
-|-------|-------|
-| Font | Sora (Google Fonts) |
-| Mono font | JetBrains Mono |
-| Black | `#000000` |
-| Neutral | `#404040` |
-| Error/Accent | `#ef4444` |
-| Zinc scale | 100 → 900 |
-| Border radius | 4px / 6px / 8px / 12px |
-| Border weight | 1.5px |
+| Layer | Technology |
+|---|---|
+| Framework | React 18 |
+| Build Tool | Vite 5 |
+| Animation | Framer Motion 11 |
+| Styling | Vanilla CSS (CSS variables) |
+| Icons | React Icons 5 |
+| Language | JavaScript (ESM) |
 
 ---
 
-## 🚀 Getting Started
+## Project Structure
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
+```
+src/
+├── components/
+│   ├── App.jsx          # Root component, loader gate, cursor toggle
+│   ├── Navbar.jsx       # Desktop pill nav + mobile floating bottom nav + resume modal
+│   ├── Cursor.jsx       # Custom cursor (pointer:fine devices only)
+│   ├── Loader.jsx       # Intro loading screen
+│   ├── Reveal.jsx       # Scroll-reveal animation wrappers
+│   └── Footer.jsx       # Footer
+├── sections/
+│   ├── Hero.jsx         # Landing — typewriter, floating illustration, parallax
+│   ├── About.jsx        # About me
+│   ├── Skills.jsx       # Skills grid with proficiency levels
+│   ├── Experience.jsx   # Work experience timeline
+│   ├── Projects.jsx     # Featured projects
+│   ├── Certifications.jsx
+│   └── Contact.jsx      # Contact form (mailto)
+├── hooks/
+│   ├── use3DTilt.js     # 3D tilt effect on hover
+│   └── useScrollReveal.js
+├── data/
+│   └── index.js         # All personal data, skills, experience, projects
+└── styles/
+    └── global.css       # CSS variables, resets, responsive breakpoints
+```
 
-### Install & run
+---
+
+## Getting Started
+
+**Prerequisites:** Node.js 18+
 
 ```bash
 # Install dependencies
@@ -49,87 +59,79 @@ npm install
 
 # Start dev server
 npm run dev
-```
 
-Open [http://localhost:5173](http://localhost:5173)
-
-### Build for production
-
-```bash
+# Production build
 npm run build
+
+# Preview production build
 npm run preview
 ```
 
 ---
 
-## 📁 Project Structure
+## Responsive Behaviour
 
-```
-portfolio/
-├── index.html
-├── vite.config.js
-├── package.json
-└── src/
-    ├── main.jsx               # Entry point
-    ├── styles/
-    │   └── global.css         # CSS variables & reset
-    ├── data/
-    │   └── index.js           # All content (skills, experience, projects)
-    ├── hooks/
-    │   └── useScrollReveal.js # Intersection observer hook
-    ├── components/
-    │   ├── App.jsx            # Root component + loader gate
-    │   ├── Navbar.jsx         # Sticky blur navbar
-    │   ├── Footer.jsx         # Footer
-    │   ├── Cursor.jsx         # Custom cursor with spring lag
-    │   ├── Loader.jsx         # Page intro loader
-    │   └── Reveal.jsx         # Reusable scroll animation wrappers
-    └── sections/
-        ├── Hero.jsx           # Hero with typewriter + floating SVG
-        ├── About.jsx          # About with tab toggle + stats
-        ├── Skills.jsx         # Tech stack icon grid
-        ├── Experience.jsx     # Animated timeline + detail panel
-        ├── Projects.jsx       # Project card grid
-        └── Contact.jsx        # Form with validation + success state
+The layout uses a single breakpoint at **900px**.
+
+| Viewport | Navbar | Hero Layout |
+|---|---|---|
+| ≥ 901px | Top pill nav + Resume button | Desktop: two-column (content + illustration) |
+| ≤ 900px | Floating bottom nav (centered) | Mobile: single centered column |
+
+> **Note:** The mobile bottom nav uses Framer Motion's `x: '-50%'` in its animation values (not a CSS `transform`) to ensure the centering is never overridden by the animation engine's own transform output.
+
+---
+
+## Personalisation
+
+All content lives in one file — **`src/data/index.js`**. Update the following exports to make it your own:
+
+```js
+export const personal = { name, role, bio, email, location, social }
+export const skills   = [ { name, level, years, desc } ]
+export const experience = [ { company, role, period, highlights } ]
+export const projects = [ { title, description, tags, link } ]
+export const certifications = [ { title, issuer } ]
 ```
 
----
-
-## 🔧 Customization
-
-All content lives in `src/data/index.js`. Edit:
-
-- `personal` — name, bio, social links, email
-- `skills` — tech stack (add/remove entries, mark as `featured`)
-- `experience` — work history
-- `projects` — portfolio pieces
+To swap the resume, replace **`public/resume.pdf`**.
 
 ---
 
-## 📦 Dependencies
+## Key Features
 
-| Package | Purpose |
-|---------|---------|
-| `framer-motion` | Animations, transitions, gestures |
-| `react-intersection-observer` | Scroll-triggered reveal hooks |
-| `react-icons` | (available, extend skill icons) |
+**Navbar**
+- Desktop: sticky pill nav with an animated sliding active indicator
+- Mobile/Tablet: fixed floating bottom nav with icon buttons and tooltip labels
+- Both share a resume modal with a PDF preview, download, and LinkedIn CTA
+
+**Hero**
+- Typewriter effect cycling through role titles
+- Parallax scroll on content and illustration
+- Separate desktop (two-column grid) and mobile (centered) layouts — toggled by CSS class, not JavaScript
+
+**Animations**
+- Framer Motion powers all page transitions, entrance animations, and micro-interactions
+- `Reveal.jsx` wraps sections with `IntersectionObserver`-triggered fade/slide-ins
+- Custom `use3DTilt` hook adds perspective tilt to project cards on hover
+
+**Contact**
+- Form validates name, email (regex), and message length
+- On submit, opens the user's email client via `mailto:` with fields pre-filled
+- Shows a success state after submit
 
 ---
 
-## 🌐 Deploy
+## Deployment
 
-Works out of the box with **Vercel**, **Netlify**, or **GitHub Pages**.
+This is a static Vite app. Deploy to any static host:
 
 ```bash
-# Vercel
-npx vercel
-
-# Netlify
-npm run build && netlify deploy --prod --dir=dist
+npm run build
+# Output is in /dist — upload to Vercel, Netlify, or any CDN
 ```
 
----
-
-## 📝 License
-
-MIT — use freely, credit appreciated.
+**Vercel (recommended):**
+```bash
+npx vercel
+```
